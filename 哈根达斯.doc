@@ -1,0 +1,1842 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:w="urn:schemas-microsoft-com:office:word"
+    xmlns="http://www.w3.org/TR/REC-html40">
+    <head><meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <style type="text/css">
+        table  
+        {  
+            border-collapse: collapse;
+            border: none;  
+            width: 100%;  
+        }  
+        td,tr  
+        {  
+            border: solid #CCC 1px;
+            padding:3px;
+            font-size:9pt;
+        } 
+        .codestyle{
+            word-break: break-all;
+            mso-highlight:rgb(252, 252, 252);
+            padding-left: 5px; background-color: rgb(252, 252, 252); border: 1px solid rgb(225, 225, 232);
+        }
+        img {
+            width:100;
+        }
+    </style>
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 11">
+    <meta name=Originator content="Microsoft Word 11">
+    <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+    <body><h1>1、哈根达斯功能分析文档</h1><div style="margin-left:0px;"><h2>1.1、项目简介</h2><div style="margin-left:0px;"><p>项目名称：哈根达斯甜品店
+小组成员：何佰泳、李炳泉、石美云
+小组分工：
+何佰泳：购物车接口，文档，数据库
+李炳泉：用户接口，文档，数据库
+石美云：商品接口，文档</p>
+<p>项目名称：哈根达斯甜品店
+小组成员：何佰泳、李炳泉、石美云
+1、  课题背景
+哈根达斯，以纯正高品质闻名遐迩，带给人们关于浪漫、惊喜，独特的美妙时刻。
+2、功能需求分析
+哈根达斯网站包括前端和后台两大功能部分。
+前端功能分为：
+（1）注册登录：新用户注册和登录功能，用户登录后可以购买商品。
+（2）首页商品展示：有轮播广告、首页推荐、最新上架、热销商品。
+（3）商品列表：分类展示商品，有分页功能，可以搜索商品。
+（4）商品详情页面：展示商品的详情信息。
+（5）购物车：用户登录后，可以添加商品到购物车，进行下单。可以修改购物车中商品的数量、删除购物车商品，设定购物车条目是否勾选。
+（6）下单：用户选择好商品后，添加到购物车，然后进行下单。
+（7）个人中心：修改个人的基本信息、查看自己的购物车列表，查看自己的订单。</p>
+<p>后台功能分为：
+（1）对注册用户进行管理，查询、删除、修改用户。
+（2）对商品进行管理，对商品分类，商品信息进行添加、修改、删除。
+（3）对商品图片进行管理，对商品图片进行添加、修改、删除。
+（4）对订单进行管理，确认订单，进行发货。
+（5）对首页信息进行管理：包括首页轮播图、首页推荐、最新上架、热销商品等进行添加、修改、删除。</p></div></div><h1>2、数据库表设计</h1><div style="margin-left:0px;"><h2>2.1、用户信息表（hd_user）</h2><div style="margin-left:0px;"><ul>
+<li>用户表，储存用户信息</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户的ID，为用户的唯一标识，由系统自动生成</td>
+</tr>
+<tr>
+<td style="text-align: left;">uname</td>
+<td style="text-align: left;">VARCHAR(32)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">upwd</td>
+<td style="text-align: left;">VARCHAR(32)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">VARCHAR(64)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_name</td>
+<td style="text-align: left;">VARCHAR(32)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">gender  INT</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">0</td>
+<td></td>
+<td>性别</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.2、用户购物车表（hd_shopping_cart）</h2><div style="margin-left:0px;"><ul>
+<li>购物车表，储存用户购物车表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">product_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>购买数量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.3、商品类别表 （hd_Dessert_family）</h2><div style="margin-left:0px;"><ul>
+<li>商品类别表，储存用户商品类别</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">fid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">VARCHAR(32)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>类别名称</td>
+</tr>
+</tbody>
+</table></div><h2>2.4、商品表 （hd_Dessert）</h2><div style="margin-left:0px;"><ul>
+<li>商品表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">family_id</td>
+<td style="text-align: left;">INT)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>所属型号家族编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">product_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>产品编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>主标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">subtitle</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>副标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">DECIMAL(10,2)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promise</td>
+<td style="text-align: left;">VARCHAR(64)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>服务承诺</td>
+</tr>
+<tr>
+<td style="text-align: left;">spec</td>
+<td style="text-align: left;">VARCHAR(32)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">details</td>
+<td style="text-align: left;">VARCHAR(1024)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>产品详细说明</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.5、商品详情图表 （hd_Dessert_pic）</h2><div style="margin-left:0px;"><ul>
+<li>商品详情图表表，储存用户详情图</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">laptop_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">sm</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>小图片路径</td>
+</tr>
+<tr>
+<td style="text-align: left;">md</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>中图片路径</td>
+</tr>
+<tr>
+<td style="text-align: left;">lg</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>大图片路径</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.6、首页轮播图表 （hd_index_carousel）</h2><div style="margin-left:0px;"><ul>
+<li>首页轮播图表，储存用户首页轮播图</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">img</td>
+<td style="text-align: left;">varchar(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片路径</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varchar(64)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片描述</td>
+</tr>
+<tr>
+<td style="text-align: left;">href</td>
+<td style="text-align: left;">varchar(128)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>图片链接</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.7、首页商品栏目表 （hd_index_product）</h2><div style="margin-left:0px;"><ul>
+<li>首页商品栏目表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">VARCHAR(64)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">details</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>详细描述</td>
+</tr>
+<tr>
+<td style="text-align: left;">pic</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>图片</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">DECIMAL(10,2)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">href</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">seq_recommended</td>
+<td style="text-align: left;">TINYINT,</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">seq_new_arrival</td>
+<td style="text-align: left;">TINYINT,</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">seq_top_sale</td>
+<td style="text-align: left;">TINYINT,</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.8、用户地址表 （hd_receiver_address）</h2><div style="margin-left:0px;"><ul>
+<li>用户地址表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">aid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">receiver</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>接收人姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">province</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>省</td>
+</tr>
+<tr>
+<td style="text-align: left;">city</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>市</td>
+</tr>
+<tr>
+<td style="text-align: left;">address</td>
+<td style="text-align: left;">VARCHAR(128)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>详细地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">cellphone</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>手机</td>
+</tr>
+<tr>
+<td style="text-align: left;">fixedphone</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>固定电话</td>
+</tr>
+<tr>
+<td style="text-align: left;">postcode</td>
+<td style="text-align: left;">CHAR(6)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>邮编</td>
+</tr>
+<tr>
+<td style="text-align: left;">tag</td>
+<td style="text-align: left;">VARCHAR(16)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>标签名</td>
+</tr>
+<tr>
+<td style="text-align: left;">is_default</td>
+<td style="text-align: left;">BOOLEAN</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>是否为当前用户的默认收货地址</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h2>2.9、用户订单详情表 （hd_order_detail）</h2><div style="margin-left:0px;"><ul>
+<li>用户订单详情表 </li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">did</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">order_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">product_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>产品编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">INT )</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>购买数量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div><h2>2.10、用户订单表 （hd_order）</h2><div style="margin-left:0px;"><ul>
+<li>用户订单表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">aid</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>PRIMARY KEY AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">address_id</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul></div></div><h1>3、项目接口说明文档</h1><div style="margin-left:0px;"><h2>3.1、用户模块</h2><div style="margin-left:0px;"><h3>3.1.1、用户注册</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/reg</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST -</li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uname</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">upwd</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{"code":200,"msg":"register suc"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.1.2、用户列表</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户列表接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/list</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pho</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>大小</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code> {
+  "code": 200,
+  "msg": "用户查询成功",
+  "data": [
+    {
+      "uid": 1,
+      "uname": "benbikeke",
+      "upwd": "123456",
+      "email": "1",
+      "phone": "1",
+      "avatar": "img/avatar/default.png",
+      "user_name": "1",
+      "gender": 1
+    }
+  ]
+} 
+</code></pre></table>
+<table width='100%' class='codestyle'><pre><code>
+
+##### 返回参数说明 
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|code |string  |返回的状态  |
+|msg |string  |返回的信息  |
+|data |array  |返回的数据  |</code></pre></table></div><h3>3.1.3、修改用户信息</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>修改用户信息接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/update</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>手机</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>性别</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>"code":200,"msg":"update suc"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.1.4、用户登录</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户登录接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/login</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uname</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户</td>
+</tr>
+<tr>
+<td style="text-align: left;">upwd</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>"code":200,"msg":"reg suc"</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.1.5、删除用户</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户删除接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/delete</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>编号</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{"code":200,"msg":"delete suc"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.1.6、检索用户</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户检索接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/user/detail</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>编号</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code> {
+  "code": 200,
+  "msg": "用户检索成功",
+  "data": {
+    "uid": 1,
+    "uname": "benbikeke",
+    "upwd": "123456",
+    "email": "1",
+    "phone": "1",
+    "avatar": "img/avatar/default.png",
+    "user_name": "1",
+    "gender": 1
+  }
+} 
+</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data</td>
+<td style="text-align: left;">array</td>
+<td>返回的数据</td>
+</tr>
+</tbody>
+</table></div><h3>3.1.7、退出登录</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户退出登录接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:8080/user/logout</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>get</li>
+</ul>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code> {
+  "code": 200,"msg": "logout succ"
+} 
+</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>返回信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回信息</td>
+</tr>
+</tbody>
+</table>
+<h5>备注</h5>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h3>3.1.8、返回当前登录用户的信息</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:8080/user/sessiondata</code></li>
+</ul>
+<h5>请求方式</h5>
+<p>-get</p>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>  {
+    {"uid":4,"uname":"jiegou"}
+    }
+  }</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>返回信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">uname</td>
+<td style="text-align: left;">string</td>
+<td>返回信息</td>
+</tr>
+</tbody>
+</table>
+<h5>备注</h5>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></div><h2>3.2、商品模块</h2><div style="margin-left:0px;"><h3>3.2.1、商品添加</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>商品添加接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/product/add</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">family_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>所属型号家族编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>主标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">subtitle</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>副标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promise</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>服务承诺</td>
+</tr>
+<tr>
+<td style="text-align: left;">spec</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>规格/颜色</td>
+</tr>
+<tr>
+<td style="text-align: left;">lname</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">details</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>产品详细说明</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{"code":200,"msg":"add suc"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.2.2、删除商品</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>删除商品接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/product/delete</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>编号</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{"code":200,"msg":"”delete suc"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.2.3、商品详情</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>商品详情接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/product/detail</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>编号</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{
+"details": {
+    "lid": 1,
+    "family_id": 1,
+    "title": "蛋糕冰淇淋",
+    "subtitle": "香草冰淇淋与草莓冰淇淋，抒写小小甜蜜童话",
+    "price": 328,
+    "promise": "*退货补运费 *7天无忧退货 *48小时快速退款 *24小时发货",
+    "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上",
+    "lname": "小公主",
+    "details": "香草口味冰淇淋、草莓冰淇淋",
+    "sold_count": 100,
+    "is_onsale": 1,
+    "picList": [
+      {
+        "pid": 1,
+        "laptop_id": 1,
+        "sm": "img/product/sm/57b12a31N8f4f75a3.jpg",
+        "md": "img/product/md/57b12a31N8f4f75a3.jpg",
+        "lg": "img/product/lg/57b12a31N8f4f75a3.jpg"
+      }
+    ]
+  },
+  "family": {
+    "fid": 1,
+    "fname": "蛋糕冰淇淋",
+    "laptopList": [
+      {
+        "lid": 1,
+        "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上"
+      },
+      {
+        "lid": 2,
+        "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上"
+      },
+      {
+        "lid": 3,
+        "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上"
+      },
+      {
+        "lid": 4,
+        "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上"
+      }
+    ]
+  }
+}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.2.4、商品列表</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>商品列表接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/product/list</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pno</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">pageSize</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>大小</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code> {
+  "recordCount": 19,
+  "pageSize": 2,
+  "pageCount": 10,
+  "pno": 1,
+  "data": [
+    {
+      "lid": 20,
+      "title": "饮品",
+      "price": 39,
+      "sold_count": 100,
+      "is_onsale": 1,
+      "pic": "img/product/md/57e52dffNa4d8ce2c.jpg"
+    },
+    {
+      "lid": 3,
+      "title": "蛋糕冰淇淋",
+      "price": 328,
+      "sold_count": 100,
+      "is_onsale": 1,
+      "pic": "img/product/md/57ad8846N64ac3c79.jpg"
+    }
+  ]
+} 
+</code></pre></table>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">data</td>
+<td style="text-align: left;">array</td>
+<td>返回的数据</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.3、购物车</h2><div style="margin-left:0px;"><h3>3.3.1、添加商品到购物车</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>添加购物车接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/cart/add</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>商品编号</td>
+</tr>
+<tr>
+<td style="text-align: left;">buyCount</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>商品数量</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>{"{"code":200,"msg":"add suc"}"}</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">add</td>
+<td style="text-align: left;">string</td>
+<td>返回的过程</td>
+</tr>
+</tbody>
+</table></div><h3>3.3.2、删除购物车</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>删除购物车接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:80/cart/delete</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>购物车编号</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>"{"code":200,"msg":"delete succ"}"</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div><h3>3.3.3、购物车列表</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>购物车列表接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:8080/cart/list</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>昵称</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code> {
+  "code": 200,
+  "data": [
+    {
+      "iid": 1,
+      "lid": 1,
+      "title": "蛋糕冰淇淋",
+      "spec": "650克 2-4人左右/1.15千克 5-8人左右/1.9千克 8人以上",
+      "price": 328,
+      "count": 1,
+      "pic": "img/product/sm/57b12a31N8f4f75a3.jpg"
+    }
+  ]
+} 
+</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">string</td>
+<td>返回的信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.4、首页</h2><div style="margin-left:0px;"><h3>3.4.1、默认页面</h3><div style="margin-left:30px;"><h5>简要描述</h5>
+<ul>
+<li>首页接口</li>
+</ul>
+<h5>请求URL</h5>
+<ul>
+<li><code>http://127.0.0.1:8080/index</code></li>
+</ul>
+<h5>请求方式</h5>
+<ul>
+<li>POST </li>
+</ul>
+<h5>参数</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">carouselItems</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">array</td>
+<td>轮播广告</td>
+</tr>
+<tr>
+<td style="text-align: left;">recommendedItems</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">array</td>
+<td>首页推荐</td>
+</tr>
+<tr>
+<td style="text-align: left;">newArrialItems</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">array</td>
+<td>最新上架</td>
+</tr>
+<tr>
+<td style="text-align: left;">topSaleItems</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">array</td>
+<td>热销单品</td>
+</tr>
+</tbody>
+</table>
+<h5>返回示例</h5>
+<table width='100%' class='codestyle'><pre><code>  {
+  "carouselItems": [
+    {
+      "cid": 1,
+      "img": "img/index/banner1.png",
+      "title": "轮播广告商品1",
+      "href": "product_details.html?lid=28"
+    },
+    {
+      "cid": 2,
+      "img": "img/index/banner2.png",
+      "title": "轮播广告商品2",
+      "href": "product_details.html?lid=19"
+    },
+    {
+      "cid": 3,
+      "img": "img/index/banner3.png",
+      "title": "轮播广告商品3",
+      "href": "lookforward.html"
+    },
+    {
+      "cid": 4,
+      "img": "img/index/banner4.png",
+      "title": "轮播广告商品4",
+      "href": "lookforward.html"
+    }
+  ],
+  "recommendedItems": [
+    {
+      "pid": 1,
+      "title": "蛋糕冰淇淋",
+      "details": "香草冰淇淋与草莓冰淇淋，抒写小小甜蜜童话",
+      "pic": "img/index/study_computer_img1.png",
+      "price": 6988,
+      "href": "product_details.html?lid=1"
+    },
+    {
+      "pid": 2,
+      "title": "创意冰淇淋",
+      "details": "闪电冰淇淋",
+      "pic": "img/index/study_computer_img2.png",
+      "price": 3488,
+      "href": "product_details.html?lid=5"
+    },
+    {
+      "pid": 3,
+      "title": "原装冰淇淋",
+      "details": "香草口味,草莓,抹茶,比利时巧克力,葡萄兰姆酒",
+      "pic": "img/index/study_computer_img3.png",
+      "price": 5399,
+      "href": "product_details.html?lid=9"
+    },
+    {
+      "pid": 4,
+      "title": "手装冰淇淋",
+      "details": "产品以实物为准，收到请尽快食用",
+      "pic": "img/index/study_computer_img4.png",
+      "price": 4966,
+      "href": "product_details.html?lid=13"
+    },
+    {
+      "pid": 5,
+      "title": "饮品",
+      "details": "图片仅供参考，产品以实物为准",
+      "pic": "img/index/study_computer_img5.png",
+      "price": 6299,
+      "href": "product_details.html?lid=17"
+    }
+  ],
+  "newArrialItems": [
+    {
+      "pid": 1,
+      "title": "蛋糕冰淇淋",
+      "details": "香草冰淇淋与草莓冰淇淋，抒写小小甜蜜童话",
+      "pic": "img/index/study_computer_img1.png",
+      "price": 6988,
+      "href": "product_details.html?lid=1"
+    },
+    {
+      "pid": 2,
+      "title": "创意冰淇淋",
+      "details": "闪电冰淇淋",
+      "pic": "img/index/study_computer_img2.png",
+      "price": 3488,
+      "href": "product_details.html?lid=5"
+    },
+    {
+      "pid": 3,
+      "title": "原装冰淇淋",
+      "details": "香草口味,草莓,抹茶,比利时巧克力,葡萄兰姆酒",
+      "pic": "img/index/study_computer_img3.png",
+      "price": 5399,
+      "href": "product_details.html?lid=9"
+    },
+    {
+      "pid": 4,
+      "title": "手装冰淇淋",
+      "details": "产品以实物为准，收到请尽快食用",
+      "pic": "img/index/study_computer_img4.png",
+      "price": 4966,
+      "href": "product_details.html?lid=13"
+    },
+    {
+      "pid": 5,
+      "title": "饮品",
+      "details": "图片仅供参考，产品以实物为准",
+      "pic": "img/index/study_computer_img5.png",
+      "price": 6299,
+      "href": "product_details.html?lid=17"
+    }
+  ],
+  "topSaleItems": [
+    {
+      "pid": 1,
+      "title": "蛋糕冰淇淋",
+      "details": "香草冰淇淋与草莓冰淇淋，抒写小小甜蜜童话",
+      "pic": "img/index/study_computer_img1.png",
+      "price": 6988,
+      "href": "product_details.html?lid=1"
+    },
+    {
+      "pid": 2,
+      "title": "创意冰淇淋",
+      "details": "闪电冰淇淋",
+      "pic": "img/index/study_computer_img2.png",
+      "price": 3488,
+      "href": "product_details.html?lid=5"
+    },
+    {
+      "pid": 3,
+      "title": "原装冰淇淋",
+      "details": "香草口味,草莓,抹茶,比利时巧克力,葡萄兰姆酒",
+      "pic": "img/index/study_computer_img3.png",
+      "price": 5399,
+      "href": "product_details.html?lid=9"
+    },
+    {
+      "pid": 4,
+      "title": "手装冰淇淋",
+      "details": "产品以实物为准，收到请尽快食用",
+      "pic": "img/index/study_computer_img4.png",
+      "price": 4966,
+      "href": "product_details.html?lid=13"
+    },
+    {
+      "pid": 5,
+      "title": "饮品",
+      "details": "图片仅供参考，产品以实物为准",
+      "pic": "img/index/study_computer_img5.png",
+      "price": 6299,
+      "href": "product_details.html?lid=17"
+    }
+  ]
+} 
+  }
+</code></pre></table>
+<h5>返回参数说明</h5>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">carouselItems</td>
+<td style="text-align: left;">int</td>
+<td>轮播广告</td>
+</tr>
+<tr>
+<td style="text-align: left;">recommendedItems</td>
+<td style="text-align: left;">array</td>
+<td>首页推荐</td>
+</tr>
+<tr>
+<td style="text-align: left;">newArrialItems</td>
+<td style="text-align: left;">array</td>
+<td>最新上架</td>
+</tr>
+<tr>
+<td style="text-align: left;">topSaleItems</td>
+<td style="text-align: left;">array</td>
+<td>热销单品</td>
+</tr>
+</tbody>
+</table></div></div></div></body></html>
